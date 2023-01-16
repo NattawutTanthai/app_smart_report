@@ -1,26 +1,28 @@
 import {View, Text, SafeAreaView, ScrollView} from 'react-native';
-import Feather from 'react-native-vector-icons/Feather';
-
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import { useNavigation } from '@react-navigation/native';
 import WaitReportScreen from '../screens/TabScreen/WaitReportScreen';
 import ProcessScreen from '../screens/TabScreen/ProcessScreen';
 import SuccessScreen from '../screens/TabScreen/SuccessScreen';
 import SentToScreen from '../screens/TabScreen/SentToScreen';
+import Feather from 'react-native-vector-icons/Feather';
+
 
 const Tab = createMaterialTopTabNavigator();
 
 export default function TopBarNavigator() {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView className="bg-[#E17B62] h-full">
-        <View className="flex-row justify-center  bg-[#E17B62] ">
+        <View className="flex-row justify-center">
           <Text className="font-kanitRegular text-lg text-white p-3">
             ปัญหาที่รอดำเนินการ
           </Text>
           <View className="absolute right-2 top-3">
-            <Feather name="user" size={30} color="white" />
+            <Feather name="user" size={30} color="white" onPress={() =>{navigation.navigate('Profile')}} />
           </View>
         </View>
-
         <Tab.Navigator
           initialRouteName="WaitReport"
           screenOptions={{
