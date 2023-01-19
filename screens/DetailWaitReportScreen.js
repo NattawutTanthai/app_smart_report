@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 export default function DetailWaitReportScreen() {
     const navigation = useNavigation();
     return (
-        <ScrollView>
+        <ScrollView className='bg-white'>
             <Text className='m-4 font-kanitRegular text-lg text-[#636466]'>สถานะ : รอรับเรื่อง มาแล้ว 4 วัน</Text>
             <View className='flex-1 border border-gray-500 rounded-lg p-3 m-3'>
                 <View className='flex-row mb-4'>

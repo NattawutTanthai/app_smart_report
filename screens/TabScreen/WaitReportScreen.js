@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 export default function WaitReportScreen() {
   const navigation = useNavigation()
   return (
-    <SafeAreaView className='h-full'>
+    <SafeAreaView className='h-full bg-white'>
       <ScrollView>
         <TouchableOpacity onPress={()=>{navigation.navigate('DetailWaitReport')}} className='m-2 p-2 border rounded-xl border-gray-400 drop-shadow-xl'>
             <View className='flex-row mb-2'>

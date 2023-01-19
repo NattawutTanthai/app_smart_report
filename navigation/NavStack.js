@@ -58,9 +58,12 @@ export default function NavStack() {
           name="ConfirmDetailWaitReport"
           component={ConfirmDetailWaitReportScreen}
           options={{
-            presentation: 'transparentModal',
-            headerShown: false,
+            presentation: 'modal',
+            headerShown: true,
             title: 'รอรับเรื่อง',
+            headerTintColor: 'white',
+            headerStyle: {backgroundColor: '#E17B62',},
+            headerTitleStyle: {fontFamily: 'Kanit-Regular'},
             headerBackButtonMenuEnabled: false,
           }}
         />
