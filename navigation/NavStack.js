@@ -7,6 +7,8 @@ import TopBarNavigator from './TopBarNavigator';
 import ProfileScreen from '../screens/ProfileScreen';
 import DetailWaitReportScreen from '../screens/DetailWaitReportScreen';
 import ConfirmDetailWaitReportScreen from '../screens/ConfirmDetailWaitReportScreen';
+import DetailProcessScreen from '../screens/DetailProcessScreen';
+import ConfirmDetailProcessScreen from '../screens/ConfirmDetailProcessScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialTopTabNavigator();
@@ -61,6 +63,31 @@ export default function NavStack() {
             presentation: 'modal',
             headerShown: true,
             title: 'รอรับเรื่อง',
+            headerTintColor: 'white',
+            headerStyle: {backgroundColor: '#E17B62',},
+            headerTitleStyle: {fontFamily: 'Kanit-Regular'},
+            headerBackButtonMenuEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="DetailProcess"
+          component={DetailProcessScreen}
+          options={{
+            headerShown: true,
+            title: 'ดำเนินการ',
+            headerTintColor: 'white',
+            headerStyle: {backgroundColor: '#E17B62',},
+            headerTitleStyle: {fontFamily: 'Kanit-Regular'},
+            headerBackButtonMenuEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="ConfirmDetailProcess"
+          component={ConfirmDetailProcessScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: true,
+            title: 'ดำเนินการ',
             headerTintColor: 'white',
             headerStyle: {backgroundColor: '#E17B62',},
             headerTitleStyle: {fontFamily: 'Kanit-Regular'},

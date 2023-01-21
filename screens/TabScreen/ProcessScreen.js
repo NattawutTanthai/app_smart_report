@@ -1,10 +1,12 @@
 import { View, Text, SafeAreaView, Image, ScrollView, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 export default function ProcessScreen() {
+  const navigation = useNavigation()
   return (
     <SafeAreaView className='h-full bg-white'>
       <ScrollView>
-        <TouchableOpacity className='m-2 p-2 border rounded-xl border-gray-400 drop-shadow-xl'>
+        <TouchableOpacity className='m-2 p-2 border rounded-xl border-gray-400 drop-shadow-xl' onPress={()=> navigation.navigate('DetailProcess')}>
             <View className='flex-row mb-2'>
               <Image
                 source={require('../../assets/images/img_unknow.png')}
