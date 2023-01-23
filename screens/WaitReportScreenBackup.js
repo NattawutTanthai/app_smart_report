@@ -5,11 +5,10 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-  Platform,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
-import Axios from '../../constants/axiosConfig';
+import axios from 'axios';
 import dayjs from 'dayjs'
 import 'dayjs/locale/th'
 
@@ -17,27 +16,24 @@ export default function WaitReportScreen() {
   const navigation = useNavigation();
   const [orders, setOrders] = useState([]);
 
-  const getWaitReport = () => {
-    Axios.get('/waitReport')
+  useEffect(() => {
+    axios.get('http://localhost:3000/waitReport/')
       .then((res) => {
+
         setOrders(res.data);
+        console.log(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.err(error);
       })
-  }
-
-  useEffect(() => {
-    getWaitReport();
     dayjs.locale('th')
   }, []);
-
   return (
     <SafeAreaView className="h-full bg-white">
       <ScrollView>
-        {orders.map((order, key) => {
+      {orders.map((key,order) => {
           return (
-            <TouchableOpacity key={key}
+            <TouchableOpacity
               onPress={() => {
                 navigation.navigate('DetailWaitReport');
               }}
@@ -62,7 +58,11 @@ export default function WaitReportScreen() {
                     สถานะ : รอรับเรื่องมาแล้ว 4 วัน
                   </Text>
                   <Text className="text-[#636466] font-kanitRegular">
-                    {dayjs.unix(order.startDate_timeStamp).format('วันที่แจ้ง D MMM YYYY เวลา HH:mm น.')}
+                    วันที่แจ้ง 27 ก.ค. 65 22:27 น.
+                  </Text>
+
+                  <Text>
+                  {dayjs.unix(1674410721).format('วันที่ D MMM YYYY เวลา HH:mm น.')}
                   </Text>
                 </View>
               </View>
