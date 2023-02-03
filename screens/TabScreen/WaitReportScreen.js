@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 import Axios from '../../constants/axiosConfig';
 import dayjs from 'dayjs'
 import 'dayjs/locale/th'
-
+import buddhistEra from 'dayjs/plugin/buddhistEra'
 export default function WaitReportScreen() {
   const navigation = useNavigation();
   const [orders, setOrders] = useState([]);
@@ -44,8 +44,9 @@ export default function WaitReportScreen() {
               className="m-2 p-2 border rounded-xl border-gray-400 drop-shadow-xl">
               <View className="flex-row mb-2">
                 <Image
-                  source={require('../../assets/images/img_unknow.png')}
+                  source={{ uri: order.imgStart }}
                   style={{
+                    resizeMode: 'cover',
                     width: 80,
                     height: 80,
                     marginRight: 10,
@@ -62,7 +63,8 @@ export default function WaitReportScreen() {
                     สถานะ : รอรับเรื่องมาแล้ว 4 วัน
                   </Text>
                   <Text className="text-[#636466] font-kanitRegular">
-                    {dayjs.unix(order.startDate_timeStamp).format('วันที่แจ้ง D MMM YYYY เวลา HH:mm น.')}
+                    {dayjs.extend(buddhistEra)}
+                    {dayjs.unix(order.startDate_timeStamp).format('วันที่แจ้ง D MMM BBBB เวลา HH:mm น.')}
                   </Text>
                 </View>
               </View>
