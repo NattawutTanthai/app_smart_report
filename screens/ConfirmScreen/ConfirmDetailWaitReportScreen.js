@@ -29,7 +29,7 @@ export default function ConfirmDetailWaitReportScreen({route}) {
     const res = await Axios.patch(`/task/${route.params}`, {
       status: 1,
       commentProcess: `${comment}`,
-      user:'tanthai'
+      processDate_timeStamp: Date.now(), 
     }).then(res => {
       console.log(res);
       showAlert();

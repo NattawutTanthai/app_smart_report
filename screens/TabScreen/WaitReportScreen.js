@@ -1,20 +1,9 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  Platform,
-} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
+import {SafeAreaView, ScrollView, View} from 'react-native';
+import {useEffect, useState} from 'react';
 import Axios from '../../constants/axiosConfig';
 import TaskCard from '../../components/TaskCard';
 
-
 export default function WaitReportScreen() {
-  const navigation = useNavigation();
   const [tasks, setTasks] = useState([]);
 
   const getWaitReport = () => {
@@ -36,8 +25,10 @@ export default function WaitReportScreen() {
       <ScrollView>
         {tasks.map((task, index) => {
           return (
-            <TaskCard task={{task}} screen="DetailWaitReport" />
-          )
+            <View key={index}>
+              <TaskCard task={{task}} screen="DetailWaitReport" />
+            </View>
+          );
         })}
       </ScrollView>
     </SafeAreaView>
