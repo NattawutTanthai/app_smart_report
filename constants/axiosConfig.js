@@ -11,10 +11,4 @@ if (Platform.OS == 'ios') {
   Axios.defaults.baseURL = 'http://192.168.1.41:3000';
 }
 
-// AsyncStorage.getItem('userToken').then(val => {
-//   const token = val;
-//   console.log(token);
-//   Axios.defaults.headers.common['x-access-token'] = token;
-// });
-
 export default Axios;

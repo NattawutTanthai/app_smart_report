@@ -5,10 +5,11 @@ import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import TopBarNavigator from './TopBarNavigator';
 import ProfileScreen from '../screens/ProfileScreen';
-import DetailWaitReportScreen from '../screens/DetailWaitReportScreen';
-import ConfirmDetailWaitReportScreen from '../screens/ConfirmDetailWaitReportScreen';
-import DetailProcessScreen from '../screens/DetailProcessScreen';
-import ConfirmDetailProcessScreen from '../screens/ConfirmDetailProcessScreen';
+
+import DetailWaitReportScreen from '../screens/DetailScreen/DetailWaitReportScreen';
+import DetailProcessScreen from '../screens/DetailScreen/DetailProcessScreen';
+import ConfirmDetailWaitReportScreen from '../screens/ConfirmScreen/ConfirmDetailWaitReportScreen';
+import ConfirmDetailProcessScreen from '../screens/ConfirmScreen/ConfirmDetailProcessScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialTopTabNavigator();

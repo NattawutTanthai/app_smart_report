@@ -10,7 +10,7 @@ export default function DetailProcessScreen() {
                 <View className='flex-row mb-4'>
                     <View className='justify-center flex-col'>
                         <Image
-                            source={require('../assets/images/img_unknow_large.png')}
+                            source={require('../../assets/images/img_unknow_large.png')}
                             className='border border-gray-500 rounded-lg p-3 m-3'
                         />
                         <View className='flex-row justify-center '>
@@ -19,7 +19,7 @@ export default function DetailProcessScreen() {
                     </View>
                     <View className='justify-center flex-col'>
                         <Image
-                            source={require('../assets/images/img_unknow_large.png')}
+                            source={require('../../assets/images/img_unknow_large.png')}
                             className='border border-gray-500 rounded-lg p-3 m-3'
                         />
                         <View className='flex-row justify-center '>

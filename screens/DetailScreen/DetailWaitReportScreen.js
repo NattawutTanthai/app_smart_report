@@ -36,7 +36,7 @@ export default function DetailWaitReportScreen({ route }) {
                     </View>
                     <View className="justify-center flex-col ">
                         <Image
-                            source={require('../assets/images/img_unknow_large.png')}
+                            source={require('../../assets/images/img_unknow_large.png')}
                             className="border border-gray-500 rounded-lg p-3 m-3"
                         />
                         <View className="flex-row justify-center ">
@@ -82,7 +82,7 @@ export default function DetailWaitReportScreen({ route }) {
                 </View>
             </View>
             <TouchableOpacity
-                onPress={() => navigation.navigate('ConfirmDetailWaitReport')}
+                onPress={() => navigation.navigate('ConfirmDetailWaitReport', _id)}
                 className="bg-[#E17B62] m-4 p-3 flex-row rounded-lg justify-center">
                 <Text className="text-white font-kanitRegular text-lg">รับเรื่อง</Text>
             </TouchableOpacity>
