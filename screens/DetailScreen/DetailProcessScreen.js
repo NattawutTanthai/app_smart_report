@@ -9,8 +9,17 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 
 export default function DetailProcessScreen({route}) {
   const navigation = useNavigation();
-  const {_id, detail, name, phone, type, imgStart, startDate_timeStamp} =
-    route.params;
+  const {
+    _id,
+    detail,
+    name,
+    phone,
+    type,
+    imgStart,
+    startDate_timeStamp,
+    processDate_timeStamp,
+    commentProcess,
+  } = route.params;
 
   // Day.js
   dayjs.locale('th');
@@ -26,7 +35,8 @@ export default function DetailProcessScreen({route}) {
         <View className="flex-row mb-4">
           <View className="justify-center flex-col">
             <Image
-              source={require('../../assets/images/img_unknow_large.png')}
+              style={{width: 140, height: 140}}
+              source={{uri: imgStart}}
               className="border border-gray-500 rounded-lg p-3 m-3"
             />
             <View className="flex-row justify-center ">
@@ -43,12 +53,8 @@ export default function DetailProcessScreen({route}) {
             </View>
           </View>
         </View>
-        <Text className="font-kanitRegular text-lg text-[#636466] ml-4">
-          ID : 000001
-        </Text>
         <Text className="font-kanitRegular text-base text-[#636466] ml-4">
-          กองขยะที่ถนนศาลาแดงยังแก้ไขไม่ได้ถังขยะไม่เพียงพอและใบเล็กไปแล้วส่งกลิ่นเหม็นมาก
-          รบกวนช่วยแก้ไขทีครับ
+          รายละเอียด : {detail}
         </Text>
         <View className="flex-row">
           <View>
@@ -67,16 +73,19 @@ export default function DetailProcessScreen({route}) {
           </View>
           <View>
             <Text className="font-kanitRegular text-sm text-[#636466] ml-4 mt-8">
-              : 27 ก.ค. 65 22:27:09 น.
+              :{' '}
+              {dayjs
+                .unix(startDate_timeStamp)
+                .format('D MMM BBBB เวลา HH:mm น.')}
             </Text>
             <Text className="font-kanitRegular text-sm text-[#636466] ml-4">
-              : Tanny
+              : {name}
             </Text>
             <Text className="font-kanitRegular text-sm text-[#636466] ml-4">
-              : ความสะอาด
+              : {type}
             </Text>
             <Text className="font-kanitRegular text-sm text-[#636466] ml-4">
-              : 09877794561
+              : {phone}
             </Text>
           </View>
         </View>
@@ -87,10 +96,11 @@ export default function DetailProcessScreen({route}) {
           ดำเนินการโดย : นัฐวุฒิ รัตนะบูชา
         </Text>
         <Text className="font-kanitRegular text-[#636466]">
-          วันที่ดำเนินการ : 27 ก.ค. 65 22:27:09 น.
+          วันที่ดำเนินการ :{' '}
+          {dayjs.unix(processDate_timeStamp).format('D MMM BBBB เวลา HH:mm น.')}
         </Text>
-        <Text className="font-kanitRegular text-[#636466]">
-          รายละเอียด : รับเรื่องแล้วครับ กำลังแก้ไขปัญหาโดยด่วน
+        <Text className="font-kanitRegular text-[#636466]" numberOfLines={3}>
+          รายละเอียด : {commentProcess}
         </Text>
       </View>
       <TouchableOpacity

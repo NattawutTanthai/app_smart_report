@@ -6,8 +6,8 @@ export default function ConfirmDetailProcessScreen() {
   const navigation = useNavigation()
 
   let radio_props = [
+    { label: 'เสร็จสิ้น', value: 'เสร็จสิ้น' },
     { label: 'ส่งต่อ', value: 'ส่งต่อ' },
-    { label: 'เสร็จสิ้น', value: 'เสร็จสิ้น' }
   ];
 
   const showAlert = () =>
