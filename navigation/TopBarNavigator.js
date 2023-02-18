@@ -7,12 +7,23 @@ import SuccessScreen from '../screens/TabScreen/SuccessScreen';
 import SentToScreen from '../screens/TabScreen/SentToScreen';
 import Feather from 'react-native-vector-icons/Feather';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Tab = createMaterialTopTabNavigator();
 
 export default function TopBarNavigator() {
   const navigation = useNavigation();
 
+  const get_token = async () => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      console.log(token);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  get_token();
   return (
     <SafeAreaView className="bg-[#E17B62] h-full">
         <View className="flex-row justify-center">
