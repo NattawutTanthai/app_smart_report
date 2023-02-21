@@ -1,7 +1,10 @@
-import React from 'react'
-import NavStack from './navigation/NavStack'
+import React from 'react';
+import {AuthProvider} from './context/useContextToken';
+import NavStack from './navigation/NavStack';
 export default function App() {
   return (
-    <NavStack />
-  )
+    <AuthProvider>
+      <NavStack />
+    </AuthProvider>
+  );
 }

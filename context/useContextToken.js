@@ -1,19 +1,26 @@
 import React, {createContext, useState, useEffect} from 'react';
 import Axios from '../constants/axiosConfig';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-import {AsyncStorage} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [tokenContext, setTokenContext] = useState(null);
 
-  const login = async token => {
+  const getToken = async () => AsyncStorage.getItem('token');
+
+  const login = async (tk) => {
     try {
-      setIsLoading(true);
-      await AsyncStorage.setItem('token', token);
-      await setToken(token);
-      setIsLoading(false);
+      // setIsLoading(true);
+      await AsyncStorage.setItem('token', tk);
+      let token_set = await getToken('token');
+      setToken(token_set);
+      console.log('tokenUseContext = ' + token);
+      setIsLoggedIn(true);
+      // setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -22,6 +29,7 @@ export const AuthProvider = ({children}) => {
   const logout = () => {
     setIsLoading(true);
     setToken(null);
+    setIsLoggedIn(false);
     AsyncStorage.removeItem('token');
     setIsLoading(false);
   };
@@ -36,12 +44,12 @@ export const AuthProvider = ({children}) => {
     }
   };
   const check_auth = () => {
-    Axios.get('/auth',{token: getItem_token()})
+    Axios.get('/auth', {token: getItem_token()})
       .then(res => {
         if (res.status === 200) {
           getItem_token();
         } else {
-            setToken(null);
+          setToken(null);
         }
         console.log(res.data);
       })
@@ -60,12 +68,18 @@ export const AuthProvider = ({children}) => {
     }
   };
 
-  useEffect(() => {
-    isLoggendIn();
-  }, []);
+  // useEffect(() => {
+    // isLoggendIn();
+  // }, []);
 
   return (
-    <AuthContext.Provider value={{login, logout, isLoading, token}}>
+    <AuthContext.Provider
+      value={{
+        login,
+        logout,
+        tokenContext,
+        isLoggedIn,
+      }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,3 +1,4 @@
+import { useEffect, useState, useContext } from 'react';
 import {
   View,
   Text,
@@ -6,10 +7,92 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Alert,
 } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
+import Axios from '../constants/axiosConfig';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function LoginScreen({navigation}) {
+import { AuthContext } from '../context/useContextToken';
+
+export default function LoginScreen({ navigation }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const { login } = useContext(AuthContext);
+
+  const alert = (title, detail) => {
+    Alert.alert(
+      title,
+      detail,
+      [
+        {
+          text: 'OK',
+          onPress: () => {
+            // navigation.navigate('TopBarNavigator');
+          },
+          style: 'OK',
+        },
+      ],
+      {
+        cancelable: true,
+      },
+    );
+  };
+
+  const clearAsyncStorage =  () => {
+    AsyncStorage.clear();
+  };
+
+  const handledLogin = async () => {
+    // navigation.navigate('TopBarNavigator');
+    if (username !== '' || password !== '') {
+      console.log(username, password);
+      Axios.post('/employee/login', {
+        username: username,
+        password: password,
+      })
+        .then((res) => {
+          alert('สำเร็จ', 'เข้าสู่ระบบสำเร็จ');
+          login(res.data.token);
+          getAsyncStorageToken();
+        })
+      // setAsyncStorageToken();
+      // getAsyncStorageToken();
+
+    } else {
+      alert('ผิดพลาด', 'กรุณากรอกข้อมูลให้ครบถ้วน');
+    }
+  };
+
+  const setAsyncStorageToken = async () => {
+    try {
+      await AsyncStorage.setItem('token', token);
+      console.log('setAsyncStorageToken = ', token);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getAsyncStorageToken = async () => {
+    try {
+      const value = await AsyncStorage.getItem('token');
+      console.log('getAsyncStorageToken = ', value);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    // clearAsyncStorage();
+    // getAsyncStorageToken();
+  }, []);
+
+
+  // Debug
+  // useEffect(() => {
+  //   console.log(tokenState);
+  // }, [tokenState]);
 
   return (
     <SafeAreaView className="flex bg-white w-full h-full ">
@@ -36,6 +119,8 @@ export default function LoginScreen({navigation}) {
                 keyboardType="default"
                 className="w-full rounded-md"
                 placeholder="username"
+                onChangeText={setPassword}
+                value={password}
               />
             </View>
           </View>
@@ -51,6 +136,9 @@ export default function LoginScreen({navigation}) {
                 keyboardType="default"
                 className="w-full rounded-md"
                 placeholder="password"
+                secureTextEntry={true}
+                onChangeText={setUsername}
+                value={username}
               />
             </View>
           </View>
@@ -58,7 +146,7 @@ export default function LoginScreen({navigation}) {
           <View>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('TopBarNavigator');
+                handledLogin();
               }}
               className="bg-[#E17B62] flex-row justify-center py-2 rounded-lg ">
               <Text className="text-white font-kanitMedium text-lg">Login</Text>
