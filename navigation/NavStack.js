@@ -12,24 +12,24 @@ export default function NavStack() {
 
   const getToken = async () => AsyncStorage.getItem('token');
 
-  const clearAsyncStorage =  () => {
+  const clearAsyncStorage = () => {
     AsyncStorage.clear();
   };
 
   const check_auth = async () => {
     console.log('check_auth');
-    let token = await getToken();
-    console.log('tokenStorage เริ่มต้น = ', token);
+    let Token = await getToken();
+    console.log('tokenStorage เริ่มต้น = ', Token);
 
-    Axios.post('/auth', {token: token})
+    Axios.post('/auth', {token: Token})
       .then(res => {
         console.log('res.data', res.data);
-        login(token);
+        login(Token);
       })
       .catch(err => {
         console.log('Not login err : ' + err);
         return;
-      })
+      });
   };
 
   useEffect(() => {

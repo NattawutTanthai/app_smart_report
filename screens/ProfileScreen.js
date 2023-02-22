@@ -1,5 +1,6 @@
 import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 
+
 export default function ProfileScreen() {
   return (
     <ScrollView>
@@ -28,7 +29,7 @@ export default function ProfileScreen() {
           </Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity className="bg-red-500 flex-row justify-center p-3 rounded-xl m-4">
+      <TouchableOpacity className="bg-red-500 flex-row justify-center p-3 rounded-xl m-4" onPress={logout()}>
         <Text className="text-white text-base font-kanitRegular">
           ออกจากระบบ
         </Text>

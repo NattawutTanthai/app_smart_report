@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState('NONE');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [tokenContext, setTokenContext] = useState(null);
 
@@ -26,12 +26,15 @@ export const AuthProvider = ({children}) => {
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    try {
     setIsLoading(true);
-    setToken(null);
     setIsLoggedIn(false);
-    AsyncStorage.removeItem('token');
+    await AsyncStorage.removeItem('token');
     setIsLoading(false);
+  } catch (error) {
+    console.error(error);
+  }
   };
 
   const getItem_token = async () => {

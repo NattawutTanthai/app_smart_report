@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import {
   View,
   Text,
@@ -28,9 +28,6 @@ export default function LoginScreen({ navigation }) {
       [
         {
           text: 'OK',
-          onPress: () => {
-            // navigation.navigate('TopBarNavigator');
-          },
           style: 'OK',
         },
       ],
@@ -40,7 +37,7 @@ export default function LoginScreen({ navigation }) {
     );
   };
 
-  const clearAsyncStorage =  () => {
+  const clearAsyncStorage = () => {
     AsyncStorage.clear();
   };
 
@@ -55,39 +52,12 @@ export default function LoginScreen({ navigation }) {
         .then((res) => {
           alert('สำเร็จ', 'เข้าสู่ระบบสำเร็จ');
           login(res.data.token);
-          getAsyncStorageToken();
         })
-      // setAsyncStorageToken();
-      // getAsyncStorageToken();
 
     } else {
       alert('ผิดพลาด', 'กรุณากรอกข้อมูลให้ครบถ้วน');
     }
   };
-
-  const setAsyncStorageToken = async () => {
-    try {
-      await AsyncStorage.setItem('token', token);
-      console.log('setAsyncStorageToken = ', token);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const getAsyncStorageToken = async () => {
-    try {
-      const value = await AsyncStorage.getItem('token');
-      console.log('getAsyncStorageToken = ', value);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    // clearAsyncStorage();
-    // getAsyncStorageToken();
-  }, []);
-
 
   // Debug
   // useEffect(() => {
