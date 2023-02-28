@@ -1,19 +1,13 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-} from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+
 // Day.js
 import dayjs from 'dayjs';
 import 'dayjs/locale/th';
 import buddhistEra from 'dayjs/plugin/buddhistEra';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
-export default function DetailProcessScreen({route}) {
+export default function DetailSuccessScreen({route}) {
   const navigation = useNavigation();
   const {
     _id,
@@ -22,9 +16,12 @@ export default function DetailProcessScreen({route}) {
     phone,
     type,
     imgStart,
+    imgEnd,
     startDate_timeStamp,
     processDate_timeStamp,
+    endDate_timeStamp,
     commentProcess,
+    commentEnd,
   } = route.params;
 
   // Day.js
@@ -32,18 +29,10 @@ export default function DetailProcessScreen({route}) {
   dayjs.extend(buddhistEra);
   dayjs.extend(relativeTime);
 
-  takePicture = async function (camera) {
-    const options = {quality: 0.5, base64: true};
-    const data = await camera.takePictureAsync(options);
-    //  eslint-disable-next-line
-    console.log(data.uri);
-  };
-
   return (
     <ScrollView className="bg-white">
-
       <Text className="m-4 font-kanitRegular text-lg text-[#636466]">
-        สถานะ : ดำเนินการ มาแล้ว 4 วัน
+        สถานะ : เสร็จสิ้นเมื่อ {dayjs().to(dayjs(endDate_timeStamp))}
       </Text>
       <View className="flex-1 border border-gray-500 rounded-lg p-3 m-3 mb-1">
         <View className="flex-row mb-4">
@@ -59,7 +48,8 @@ export default function DetailProcessScreen({route}) {
           </View>
           <View className="justify-center flex-col">
             <Image
-              source={require('../../assets/images/img_unknow_large.png')}
+              style={{width: 140, height: 140}}
+              source={{uri: imgEnd}}
               className="border border-gray-500 rounded-lg p-3 m-3"
             />
             <View className="flex-row justify-center ">
@@ -117,12 +107,19 @@ export default function DetailProcessScreen({route}) {
           รายละเอียด : {commentProcess}
         </Text>
       </View>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('ConfirmDetailProcess', _id)}
-        className="bg-[#E17B62] m-4 p-3 flex-row rounded-lg justify-center">
-        <Text className="text-white font-kanitRegular text-lg">เสร็จสิ้น</Text>
-      </TouchableOpacity>
+
+      <View className="border rounded-lg p-3 pl-7 m-3 border-gray-500">
+        <Text className="font-kanitRegular text-[#636466]">
+          เสร็จสิ้นโดย : นัฐวุฒิ รัตนะบูชา
+        </Text>
+        <Text className="font-kanitRegular text-[#636466]">
+          วันที่ดำเนินการ :{' '}
+          {dayjs.unix(endDate_timeStamp).format('D MMM BBBB เวลา HH:mm น.')}
+        </Text>
+        <Text className="font-kanitRegular text-[#636466]" numberOfLines={3}>
+          รายละเอียด : {commentEnd}
+        </Text>
+      </View>
     </ScrollView>
   );
 }
-

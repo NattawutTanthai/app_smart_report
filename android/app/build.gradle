@@ -158,6 +158,9 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
+
+        missingDimensionStrategy 'react-native-camera', 'general' // <--- insert this line
+
         applicationId "com.app_smart_report"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion

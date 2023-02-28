@@ -6,6 +6,8 @@ import ProfileScreen from '../screens/ProfileScreen';
 
 import DetailWaitReportScreen from '../screens/DetailScreen/DetailWaitReportScreen';
 import DetailProcessScreen from '../screens/DetailScreen/DetailProcessScreen';
+import DetailSentToScreen from '../screens/DetailScreen/DetailSentToScreen';
+import DetailSuccessScreen from '../screens/DetailScreen/DetailSuccessScreen';
 import ConfirmDetailWaitReportScreen from '../screens/ConfirmScreen/ConfirmDetailWaitReportScreen';
 import ConfirmDetailProcessScreen from '../screens/ConfirmScreen/ConfirmDetailProcessScreen';
 
@@ -81,6 +83,31 @@ export default function MainStack() {
               headerBackButtonMenuEnabled: false,
             }}
           />
+          <Stack.Screen
+            name="DetailSuccess"
+            component={DetailSuccessScreen}
+            options={{
+              headerShown: true,
+              title: 'เสร็จสิ้น',
+              headerTintColor: 'white',
+              headerStyle: {backgroundColor: '#E17B62'},
+              headerTitleStyle: {fontFamily: 'Kanit-Regular'},
+              headerBackButtonMenuEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="DetailSentTo"
+            component={DetailSentToScreen}
+            options={{
+              headerShown: true,
+              title: 'เสร็จสิ้น',
+              headerTintColor: 'white',
+              headerStyle: {backgroundColor: '#E17B62'},
+              headerTitleStyle: {fontFamily: 'Kanit-Regular'},
+              headerBackButtonMenuEnabled: false,
+            }}
+          />
+          
         </Stack.Navigator>
     )
 }
