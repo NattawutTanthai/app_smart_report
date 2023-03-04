@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import {useState, useContext} from 'react';
 import {
   View,
   Text,
@@ -13,13 +13,13 @@ import Feather from 'react-native-vector-icons/Feather';
 import Axios from '../constants/axiosConfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { AuthContext } from '../context/useContextToken';
+import {AuthContext} from '../context/useContextToken';
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen({navigation}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const { login } = useContext(AuthContext);
+  const {login} = useContext(AuthContext);
 
   const alert = (title, detail) => {
     Alert.alert(
@@ -37,6 +37,20 @@ export default function LoginScreen({ navigation }) {
     );
   };
 
+  const getEmpName = async () => {};
+
+  setEmpNameLocalStorge = async () => {
+    let fullName = '';
+    try {
+      await Axios.get('employee/' + `${username}`).then(res => {
+        fullName = res.data.fname + ' ' + res.data.lname;
+      });
+      await AsyncStorage.setItem('empName', fullName);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const clearAsyncStorage = () => {
     AsyncStorage.clear();
   };
@@ -48,12 +62,11 @@ export default function LoginScreen({ navigation }) {
       Axios.post('/employee/login', {
         username: username,
         password: password,
-      })
-        .then((res) => {
-          alert('สำเร็จ', 'เข้าสู่ระบบสำเร็จ');
-          login(res.data.token);
-        })
-
+      }).then(res => {
+        alert('สำเร็จ', 'เข้าสู่ระบบสำเร็จ');
+        setEmpNameLocalStorge(username);
+        login(res.data.token);
+      });
     } else {
       alert('ผิดพลาด', 'กรุณากรอกข้อมูลให้ครบถ้วน');
     }

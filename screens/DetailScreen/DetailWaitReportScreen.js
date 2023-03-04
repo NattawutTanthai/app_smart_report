@@ -20,7 +20,7 @@ export default function DetailWaitReportScreen({ route }) {
     return (
         <ScrollView className="bg-white">
             <Text className="m-4 font-kanitRegular text-lg text-[#636466]">
-                สถานะ : {dayjs().to(dayjs(startDate_timeStamp))}
+                สถานะ : {dayjs().to(dayjs.unix(startDate_timeStamp))}
             </Text>
             <View className="flex-1 border border-gray-500 rounded-lg p-3 m-3">
                 <View className="flex-row mb-4">
