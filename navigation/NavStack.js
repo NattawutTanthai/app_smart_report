@@ -17,7 +17,6 @@ export default function NavStack() {
   };
 
   const check_auth = async () => {
-    console.log('check_auth');
     let Token = await getToken();
     console.log('tokenStorage เริ่มต้น = ', Token);
 

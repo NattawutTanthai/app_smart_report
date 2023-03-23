@@ -12,7 +12,7 @@ export const AuthProvider = ({children}) => {
 
   const getToken = async () => AsyncStorage.getItem('token');
 
-  const login = async (tk) => {
+  const login = async tk => {
     try {
       // setIsLoading(true);
       await AsyncStorage.setItem('token', tk);
@@ -28,13 +28,14 @@ export const AuthProvider = ({children}) => {
 
   const logout = async () => {
     try {
-    setIsLoading(true);
-    setIsLoggedIn(false);
-    await AsyncStorage.removeItem('token');
-    setIsLoading(false);
-  } catch (error) {
-    console.error(error);
-  }
+      alert('ออกจากระบบสำเร็จ');
+      setIsLoading(true);
+      setIsLoggedIn(false);
+      await AsyncStorage.removeItem('token');
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const getItem_token = async () => {
@@ -72,7 +73,7 @@ export const AuthProvider = ({children}) => {
   };
 
   // useEffect(() => {
-    // isLoggendIn();
+  // isLoggendIn();
   // }, []);
 
   return (

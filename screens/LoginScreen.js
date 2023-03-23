@@ -14,6 +14,7 @@ import Axios from '../constants/axiosConfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {AuthContext} from '../context/useContextToken';
+import axios from 'axios';
 
 export default function LoginScreen({navigation}) {
   const [username, setUsername] = useState('');
@@ -36,8 +37,6 @@ export default function LoginScreen({navigation}) {
       },
     );
   };
-
-  const getEmpName = async () => {};
 
   setEmpNameLocalStorge = async () => {
     let fullName = '';
@@ -66,6 +65,8 @@ export default function LoginScreen({navigation}) {
         alert('สำเร็จ', 'เข้าสู่ระบบสำเร็จ');
         setEmpNameLocalStorge(username);
         login(res.data.token);
+      }).catch(err => {
+        alert('ผิดพลาด', 'กรุณากรอกข้อมูลให้ถูกต้อง');
       });
     } else {
       alert('ผิดพลาด', 'กรุณากรอกข้อมูลให้ครบถ้วน');

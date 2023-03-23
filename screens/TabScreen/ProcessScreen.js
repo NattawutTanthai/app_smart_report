@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
-import {SafeAreaView, ScrollView, View} from 'react-native';
+import {useCallback, useEffect, useState} from 'react';
+import {SafeAreaView, ScrollView, View, RefreshControl} from 'react-native';
 import TaskCard from '../../components/TaskCard';
 import Axios from '../../constants/axiosConfig';
 
 export default function ProcessScreen() {
   const [tasks, setTasks] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
 
   const getWaitReport = () => {
     Axios.get('/process')
@@ -16,19 +17,29 @@ export default function ProcessScreen() {
       });
   };
 
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 1500);
+  }, []);
+
   useEffect(() => {
     getWaitReport();
-  }, []);
+  }, [refreshing]);
 
   return (
     <SafeAreaView className="h-full bg-white">
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
         {tasks.map((task, index) => {
           return (
             <View key={index}>
-            <TaskCard task={{task}} screen="DetailProcess" />
+              <TaskCard task={{task}} screen="DetailProcess" />
             </View>
-            );
+          );
         })}
       </ScrollView>
     </SafeAreaView>
