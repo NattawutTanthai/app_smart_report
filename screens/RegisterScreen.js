@@ -5,6 +5,15 @@ import Feather from 'react-native-vector-icons/Feather';
 
 export default function RegisterScreen({ navigation }) {
   const [showPassword, setShowPassword] = useState(true)
+  const [code, setCode] = useState('');
+  const [fname, setFname] = useState('');
+  const [lname, setLname] = useState('');
+  const [username , setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
+
+
+
   return (
     <SafeAreaView className='flex bg-white w-full h-full '>
       <ScrollView>
@@ -24,7 +33,7 @@ export default function RegisterScreen({ navigation }) {
                 <Feather name="lock" size={30} color="#828282" />
               </View>
               <View className='px-2 items-center flex-1 flex-row'>
-                <TextInput style={styles.input} keyboardType='numeric' className='w-full rounded-md' placeholder='รหัสหน่วยงาน' />
+                <TextInput value={code} onChange={(e)=>setCode(e.target.value)} style={styles.input} keyboardType='numeric' className='w-full rounded-md' placeholder='รหัสหน่วยงาน' />
               </View>
             </View>
 
@@ -34,7 +43,7 @@ export default function RegisterScreen({ navigation }) {
                 <Feather name="user" size={30} color="#828282" />
               </View>
               <View className='px-2 items-center flex-1 flex-row'>
-                <TextInput style={styles.input} keyboardType='default' className='w-full rounded-md' placeholder='ชื่อ' />
+                <TextInput value={fname} style={styles.input} keyboardType='default' className='w-full rounded-md' placeholder='ชื่อ' />
               </View>
             </View>
 
