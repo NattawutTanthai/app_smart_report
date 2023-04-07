@@ -22,6 +22,7 @@ export default function DetailSentToScreen({route}) {
     endDate_timeStamp,
     commentProcess,
     commentEnd,
+    empEnd,
   } = route.params;
 
   // Day.js
@@ -98,7 +99,7 @@ export default function DetailSentToScreen({route}) {
 
       <View className="border rounded-lg p-3 pl-7 m-3 border-gray-500">
         <Text className="font-kanitRegular text-[#636466]">
-          ดำเนินการโดย : นัฐวุฒิ รัตนะบูชา
+          ดำเนินการโดย : {empEnd}
         </Text>
         <Text className="font-kanitRegular text-[#636466]">
           วันที่ดำเนินการ :{' '}
@@ -111,7 +112,7 @@ export default function DetailSentToScreen({route}) {
 
       <View className="border rounded-lg p-3 pl-7 m-3 border-gray-500">
         <Text className="font-kanitRegular text-[#636466]">
-          ส่งต่อโดย : นัฐวุฒิ รัตนะบูชา
+          ส่งต่อโดย : {empEnd}
         </Text>
         <Text className="font-kanitRegular text-[#636466]">
           วันที่ดำเนินการ :{' '}

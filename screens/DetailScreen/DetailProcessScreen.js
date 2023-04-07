@@ -25,6 +25,7 @@ export default function DetailProcessScreen({route}) {
     startDate_timeStamp,
     processDate_timeStamp,
     commentProcess,
+    empProcess,
   } = route.params;
 
   // Day.js
@@ -107,11 +108,11 @@ export default function DetailProcessScreen({route}) {
 
       <View className="border rounded-lg p-3 pl-7 m-3 border-gray-500">
         <Text className="font-kanitRegular text-[#636466]">
-          ดำเนินการโดย : นัฐวุฒิ รัตนะบูชา
+          ดำเนินการโดย : {empProcess}
         </Text>
         <Text className="font-kanitRegular text-[#636466]">
           วันที่ดำเนินการ :{' '}
-          {dayjs.unix(processDate_timeStamp).format('D MMM BBBB เวลา HH:mm น.')}
+          {dayjs(processDate_timeStamp).format('D MMM BBBB เวลา HH:mm น.')}
         </Text>
         <Text className="font-kanitRegular text-[#636466]" numberOfLines={3}>
           รายละเอียด : {commentProcess}

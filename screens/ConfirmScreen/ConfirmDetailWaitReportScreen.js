@@ -2,6 +2,8 @@ import {View, Text, TouchableOpacity, TextInput, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
 import Axios from '../../constants/axiosConfig';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export default function ConfirmDetailWaitReportScreen({route}) {
   const [comment, setComment] = useState('');
@@ -24,12 +26,23 @@ export default function ConfirmDetailWaitReportScreen({route}) {
       },
     );
 
+    const getEmpName = async () => {
+      try {
+        let token = await AsyncStorage.getItem('empName');
+        return token;
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
   const handelConfirm = async () => {
+    let empName = await getEmpName();
     try {
     const res = await Axios.patch(`/task/${route.params}`, {
       status: 1,
       commentProcess: `${comment}`,
       processDate_timeStamp: Date.now(), 
+      empProcess: empName,
     }).then(res => {
       console.log(res);
       showAlert();

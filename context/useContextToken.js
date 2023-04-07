@@ -1,4 +1,4 @@
-import React, {createContext, useState, useEffect} from 'react';
+import React, {createContext, useState} from 'react';
 import Axios from '../constants/axiosConfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -47,6 +47,7 @@ export const AuthProvider = ({children}) => {
       console.error(error);
     }
   };
+  
   const check_auth = () => {
     Axios.get('/auth', {token: getItem_token()})
       .then(res => {

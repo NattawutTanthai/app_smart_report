@@ -22,6 +22,8 @@ export default function DetailSuccessScreen({route}) {
     endDate_timeStamp,
     commentProcess,
     commentEnd,
+    empProcess,
+    empEnd,
   } = route.params;
 
   // Day.js
@@ -97,7 +99,7 @@ export default function DetailSuccessScreen({route}) {
 
       <View className="border rounded-lg p-3 pl-7 m-3 border-gray-500">
         <Text className="font-kanitRegular text-[#636466]">
-          ดำเนินการโดย : นัฐวุฒิ รัตนะบูชา
+          ดำเนินการโดย : {empProcess}
         </Text>
         <Text className="font-kanitRegular text-[#636466]">
           วันที่ดำเนินการ :{' '}
@@ -110,7 +112,7 @@ export default function DetailSuccessScreen({route}) {
 
       <View className="border rounded-lg p-3 pl-7 m-3 border-gray-500">
         <Text className="font-kanitRegular text-[#636466]">
-          เสร็จสิ้นโดย : นัฐวุฒิ รัตนะบูชา
+          เสร็จสิ้นโดย : {empEnd}
         </Text>
         <Text className="font-kanitRegular text-[#636466]">
           วันที่ดำเนินการ :{' '}
