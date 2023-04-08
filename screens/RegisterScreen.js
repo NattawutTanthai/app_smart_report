@@ -51,7 +51,7 @@ export default function RegisterScreen({navigation}) {
   };
 
   const handleSubmit = () => {
-    console.log(code, fname, lname, username, password, phone, dataCode);
+    // console.log(code, fname, lname, username, password, phone, dataCode);
     if (ck_code) {
       if (phone.length == 10) {
         if (

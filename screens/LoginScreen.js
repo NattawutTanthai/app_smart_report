@@ -38,11 +38,14 @@ export default function LoginScreen({navigation}) {
 
   setEmpNameLocalStorge = async () => {
     let fullName = '';
+    let typeEmp = '';
     try {
       await Axios.get('employee/' + `${username}`).then(res => {
         fullName = res.data.fname + ' ' + res.data.lname;
+        typeEmp = res.data.type;
       });
       await AsyncStorage.setItem('empName', fullName);
+      await AsyncStorage.setItem('empType', typeEmp);
     } catch (e) {
       console.log(e);
     }
@@ -55,7 +58,7 @@ export default function LoginScreen({navigation}) {
   const handledLogin = async () => {
     // navigation.navigate('TopBarNavigator');
     if (username !== '' || password !== '') {
-      console.log(username, password);
+      // console.log(username, password);
       Axios.post('/employee/login', {
         username: username,
         password: password,

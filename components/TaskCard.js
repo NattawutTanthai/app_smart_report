@@ -68,6 +68,7 @@ function TaskCard({screen, task}) {
               .format('วันที่แจ้ง : D MMM BBBB เวลา HH:mm น.')}
           </Text>
           <Text
+            style={{width: 200}}
             numberOfLines={1}
             ellipsizeMode="tail"
             className="text-[#636466] font-kanitRegular">

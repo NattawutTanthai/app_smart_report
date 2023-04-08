@@ -18,7 +18,7 @@ export const AuthProvider = ({children}) => {
       await AsyncStorage.setItem('token', tk);
       let token_set = await getToken('token');
       setToken(token_set);
-      console.log('tokenUseContext = ' + token);
+      // console.log('tokenUseContext = ' + token);
       setIsLoggedIn(true);
       // setIsLoading(false);
     } catch (error) {
@@ -56,7 +56,7 @@ export const AuthProvider = ({children}) => {
         } else {
           setToken(null);
         }
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch(err => {
         console.error('auth', err);

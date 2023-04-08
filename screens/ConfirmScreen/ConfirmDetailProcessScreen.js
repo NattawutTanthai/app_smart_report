@@ -49,8 +49,7 @@ export default function ConfirmDetailProcessScreen({route}) {
       [
         {
           text: 'OK',
-          onPress: () => {
-          },
+          onPress: () => {},
           style: 'OK',
         },
       ],
@@ -73,7 +72,7 @@ export default function ConfirmDetailProcessScreen({route}) {
 
     if (imageBase64 == null) {
       showAlert('ผิดพลาด', 'กรุณาถ่ายรูป');
-    } else if (valueDropdown == null) {
+    } else if (valueDropdown == null && status == 3) {
       showAlert('ผิดพลาด', 'กรุณาเลือกที่ต้องการส่งต่อ');
     } else if (status === 3) {
       Axios.put(`/task/${route.params}`, {
@@ -86,7 +85,7 @@ export default function ConfirmDetailProcessScreen({route}) {
       })
         .then(res => {
           showAlert('เสร็จสิ้น', 'ดำเนินการส่งต่อเรียบร้อยแล้ว!');
-          navigation.navigate('SentTo')
+          navigation.navigate('SentTo' , {'paramPropKey': 'paramPropValue'});
         })
         .catch(err => {
           console.log(err);
@@ -101,7 +100,7 @@ export default function ConfirmDetailProcessScreen({route}) {
       })
         .then(res => {
           showAlert('เสร็จสิ้น', 'ดำเนินการเรียบร้อยแล้ว!');
-          navigation.navigate('Success')
+          navigation.navigate('Success' , {'paramPropKey': 'paramPropValue'});
         })
         .catch(err => {
           console.log(err);

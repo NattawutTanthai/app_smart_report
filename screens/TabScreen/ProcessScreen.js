@@ -2,13 +2,20 @@ import {useCallback, useEffect, useState} from 'react';
 import {SafeAreaView, ScrollView, View, RefreshControl} from 'react-native';
 import TaskCard from '../../components/TaskCard';
 import Axios from '../../constants/axiosConfig';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function ProcessScreen() {
+export default function ProcessScreen({route}) {
   const [tasks, setTasks] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
-  const getWaitReport = () => {
-    Axios.get('/process')
+  const getEmpType = async () => AsyncStorage.getItem('empType');
+
+  const getWaitReport = async () => {
+    const type = await getEmpType();
+    Axios.post('/task/getByType',{
+      type: type,
+      status : 1
+    })
       .then(res => {
         setTasks(res.data);
       })
@@ -26,7 +33,7 @@ export default function ProcessScreen() {
 
   useEffect(() => {
     getWaitReport();
-  }, [refreshing]);
+  }, [refreshing , route]);
 
   return (
     <SafeAreaView className="h-full bg-white">

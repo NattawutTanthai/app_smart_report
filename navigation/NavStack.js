@@ -18,11 +18,11 @@ export default function NavStack() {
 
   const check_auth = async () => {
     let Token = await getToken();
-    console.log('tokenStorage เริ่มต้น = ', Token);
+    // console.log('tokenStorage เริ่มต้น = ', Token);
 
     Axios.post('/auth', {token: Token})
       .then(res => {
-        console.log('res.data', res.data);
+        // console.log('res.data', res.data);
         login(Token);
       })
       .catch(err => {

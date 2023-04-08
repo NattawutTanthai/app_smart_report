@@ -16,7 +16,7 @@ export default function ConfirmDetailWaitReportScreen({route}) {
         {
           text: 'OK',
           onPress: () => {
-            navigation.navigate('Process');
+            navigation.navigate('Process' , {'paramPropKey': 'paramPropValue'});
           },
           style: 'OK',
         },
@@ -44,7 +44,7 @@ export default function ConfirmDetailWaitReportScreen({route}) {
       processDate_timeStamp: Date.now(), 
       empProcess: empName,
     }).then(res => {
-      console.log(res);
+      // console.log(res);
       showAlert();
     });
     } catch (error) {

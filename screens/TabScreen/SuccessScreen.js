@@ -2,13 +2,20 @@ import {View, SafeAreaView, ScrollView, RefreshControl} from 'react-native';
 import Axios from '../../constants/axiosConfig';
 import TaskCard from '../../components/TaskCard';
 import {useCallback, useEffect, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function SuccessScreen() {
+export default function SuccessScreen({route}) {
   const [tasks, setTasks] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
-  const getSuccess = () => {
-    Axios.get('/success')
+  const getEmpType = async () => AsyncStorage.getItem('empType');
+
+  const getSuccess = async () => {
+    const type = await getEmpType();
+    Axios.post('/task/getByType', {
+      type: type,
+      status: 2,
+    })
       .then(res => {
         setTasks(res.data);
       })
@@ -26,7 +33,7 @@ export default function SuccessScreen() {
 
   useEffect(() => {
     getSuccess();
-  }, [refreshing]);
+  }, [refreshing, route]);
 
   return (
     <SafeAreaView className="h-full bg-white">
