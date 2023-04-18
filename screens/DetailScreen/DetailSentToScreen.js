@@ -34,7 +34,7 @@ export default function DetailSentToScreen({route}) {
   return (
     <ScrollView className="bg-white">
       <Text className="m-4 font-kanitRegular text-lg text-[#636466]">
-        สถานะ : เสร็จสิ้นเมื่อ {dayjs().to(dayjs(endDate_timeStamp))} 
+        สถานะ : เสร็จสิ้นเมื่อ {dayjs().to(dayjs(endDate_timeStamp))}
       </Text>
       <View className="flex-1 border border-gray-500 rounded-lg p-3 m-3 mb-1">
         <View className="flex-row mb-4">

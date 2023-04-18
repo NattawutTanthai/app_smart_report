@@ -100,7 +100,7 @@ export default function MainStack() {
             component={DetailSentToScreen}
             options={{
               headerShown: true,
-              title: 'เสร็จสิ้น',
+              title: 'ส่งต่อ',
               headerTintColor: 'white',
               headerStyle: {backgroundColor: '#E17B62'},
               headerTitleStyle: {fontFamily: 'Kanit-Regular'},

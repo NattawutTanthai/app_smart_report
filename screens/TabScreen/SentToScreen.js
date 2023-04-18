@@ -10,9 +10,8 @@ export default function SuccessScreen({route}) {
 
   const getSuccess = async () => {
     const type = await getEmpType();
-    Axios.post('/task/getByType',{
+    Axios.post('/task/getSentFrom',{
       type: type,
-      status : 3
     })
       .then(res => {
         setTasks(res.data);

@@ -67,30 +67,44 @@ export default function ConfirmDetailProcessScreen({route}) {
     }
   };
 
+  const getEmpType = async () => {
+    try {
+      let token = await AsyncStorage.getItem('empType');
+      return token;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handelConfirm = async () => {
     let empName = await getEmpName();
+    let empType = await getEmpType();
 
     if (imageBase64 == null) {
+      // ถ้าไม่มีรูป
       showAlert('ผิดพลาด', 'กรุณาถ่ายรูป');
     } else if (valueDropdown == null && status == 3) {
       showAlert('ผิดพลาด', 'กรุณาเลือกที่ต้องการส่งต่อ');
     } else if (status === 3) {
+      // ถ้าเลือกส่งต่อ
       Axios.put(`/task/${route.params}`, {
-        status: status,
+        status: 0,
         commentEnd: `${comment}`,
         imgEnd: `data:image/png;base64,${imageBase64}`,
         endDate_timeStamp: Date.now(),
         empEnd: empName,
         type: valueDropdown,
+        sentFrom: empType,
       })
         .then(res => {
           showAlert('เสร็จสิ้น', 'ดำเนินการส่งต่อเรียบร้อยแล้ว!');
-          navigation.navigate('SentTo' , {'paramPropKey': 'paramPropValue'});
+          navigation.navigate('SentTo', {paramPropKey: 'paramPropValue'});
         })
         .catch(err => {
           console.log(err);
         });
     } else if (status === 2) {
+      // ถ้าเลือกเสร็จสิ้น
       Axios.put(`/task/${route.params}`, {
         status: status,
         commentEnd: `${comment}`,
@@ -100,7 +114,7 @@ export default function ConfirmDetailProcessScreen({route}) {
       })
         .then(res => {
           showAlert('เสร็จสิ้น', 'ดำเนินการเรียบร้อยแล้ว!');
-          navigation.navigate('Success' , {'paramPropKey': 'paramPropValue'});
+          navigation.navigate('Success', {paramPropKey: 'paramPropValue'});
         })
         .catch(err => {
           console.log(err);

@@ -14,7 +14,7 @@ const Axios = axios.create({});
 if (Platform.OS == 'ios') {
   Axios.defaults.baseURL = 'http://localhost:3333';
 } else if (Platform.OS == 'android') {
-  Axios.defaults.baseURL = 'http://192.168.1.80:3333';
+  Axios.defaults.baseURL = 'http://192.168.1.41:3333';
 }
 
 export default Axios;

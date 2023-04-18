@@ -18,6 +18,7 @@ function TaskCard({screen, task}) {
     _id,
     detail,
     name,
+    type
   } = task.task;
   // Day.js
   dayjs.locale('th');
@@ -58,7 +59,7 @@ function TaskCard({screen, task}) {
             </Text>
           ) : (
             <Text className="text-[#EB5757] font-kanitRegular">
-              สถานะ : ส่งต่อมา {dayjs().to(dayjs(endDate_timeStamp))}
+              สถานะ : ส่งต่องานให้ {type}
             </Text>
           )}
 
