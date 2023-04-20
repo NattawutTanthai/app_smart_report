@@ -41,18 +41,19 @@ export default function RegisterScreen({navigation}) {
   };
 
   const ck_code = () => {
-    dataCode.map(data => {
-      if (code == data.code) {
-        setType(data.name);
-        return true;
-      }
-    });
-    return false;
+    let result = dataCode.filter(item => item.code === code);
+    if (result) {
+      return result;
+    } else {
+      return false;
+    }
   };
 
   const handleSubmit = () => {
-    // console.log(code, fname, lname, username, password, phone, dataCode);
-    if (ck_code) {
+    let codeCK = ck_code();
+    let typeCK = '';
+    if (codeCK.length > 0) {
+      typeCK = codeCK[0].name;
       if (phone.length == 10) {
         if (
           fname !== '' &&
@@ -66,7 +67,7 @@ export default function RegisterScreen({navigation}) {
             username: username,
             password: password,
             phone: phone,
-            type: type,
+            type: typeCK,
           })
             .then(res => {
               alert('ลงทะเบียนสำเร็จ', 'กรุณาเข้าสู่ระบบ');
