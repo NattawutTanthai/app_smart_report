@@ -27,6 +27,7 @@ export default function DetailSuccessScreen({route}) {
     commentEnd,
     empProcess,
     empEnd,
+    point,
   } = route.params;
 
   // Day.js
@@ -123,6 +124,11 @@ export default function DetailSuccessScreen({route}) {
         </Text>
         <Text className="font-kanitRegular text-[#636466]" numberOfLines={3}>
           รายละเอียด : {commentEnd}
+        </Text>
+        <Text>
+          <Text className="font-kanitRegular text-[#636466]">คะแนน : { 
+          point >= 1 ? point : "ยังไม่ได้ให้คะแนน"
+          }</Text>
         </Text>
       </View>
       <BtnNavigateMap lat={lat} log={lon} />
