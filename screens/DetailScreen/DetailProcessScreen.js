@@ -12,11 +12,14 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/th';
 import buddhistEra from 'dayjs/plugin/buddhistEra';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import BtnNavigateMap from '../../components/BtnNavigateMap';
 
 export default function DetailProcessScreen({route}) {
   const navigation = useNavigation();
   const {
     _id,
+    lat,
+    lon,
     detail,
     name,
     phone,
@@ -42,7 +45,6 @@ export default function DetailProcessScreen({route}) {
 
   return (
     <ScrollView className="bg-white">
-
       <Text className="m-4 font-kanitRegular text-lg text-[#636466]">
         สถานะ : ดำเนินการมา {dayjs().to(dayjs(processDate_timeStamp))}
       </Text>
@@ -123,7 +125,7 @@ export default function DetailProcessScreen({route}) {
         className="bg-[#E17B62] m-4 p-3 flex-row rounded-lg justify-center">
         <Text className="text-white font-kanitRegular text-lg">เสร็จสิ้น</Text>
       </TouchableOpacity>
+      <BtnNavigateMap lat={lat} log={lon} />
     </ScrollView>
   );
 }
-

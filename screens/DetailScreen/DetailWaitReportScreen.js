@@ -6,10 +6,11 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/th';
 import buddhistEra from 'dayjs/plugin/buddhistEra';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import BtnNavigateMap from '../../components/BtnNavigateMap';
 
 export default function DetailWaitReportScreen({ route }) {
     const navigation = useNavigation();
-    const { _id, detail, name, phone, type, imgStart, startDate_timeStamp } =
+    const { _id, detail, name, phone, type, imgStart, startDate_timeStamp , lat , lon } =
         route.params;
 
     // Day.js
@@ -86,6 +87,8 @@ export default function DetailWaitReportScreen({ route }) {
                 className="bg-[#E17B62] m-4 p-3 flex-row rounded-lg justify-center">
                 <Text className="text-white font-kanitRegular text-lg">รับเรื่อง</Text>
             </TouchableOpacity>
+
+            <BtnNavigateMap lat={lat} log={lon} />
         </ScrollView>
     );
 }

@@ -6,11 +6,14 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/th';
 import buddhistEra from 'dayjs/plugin/buddhistEra';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import BtnNavigateMap from '../../components/BtnNavigateMap';
 
 export default function DetailSuccessScreen({route}) {
   const navigation = useNavigation();
   const {
     _id,
+    lat,
+    lon,
     detail,
     name,
     phone,
@@ -122,6 +125,7 @@ export default function DetailSuccessScreen({route}) {
           รายละเอียด : {commentEnd}
         </Text>
       </View>
+      <BtnNavigateMap lat={lat} log={lon} />
     </ScrollView>
   );
 }
