@@ -127,7 +127,7 @@ export default function DetailSuccessScreen({route}) {
         </Text>
         <Text>
           <Text className="font-kanitRegular text-[#636466]">คะแนน : { 
-          point >= 1 ? point : "ยังไม่ได้ให้คะแนน"
+          point >= 1 ? `${point} คะแนน` : "ยังไม่ได้ให้คะแนน"
           }</Text>
         </Text>
       </View>
